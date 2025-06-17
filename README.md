@@ -1,65 +1,112 @@
 # MCP-powered Agentic RAG using Firecrawl and Qdrant
 
-This project implements Agentic RAG using Firecrawl and Qdrant.
-- [Firecrawl](https://www.firecrawl.dev/i/api) is used to scrape data from the web
-- Qdrant as the local vector database.
-- Cursor IDE as the MCP client.
-
-
----
-## Setup and installations
-
-**Get Firecrawl API Key**:
-- Go to [Firecrawl](https://www.firecrawl.dev/i/api) and sign up for an account.
-- You will find your API key there.
-- Store it in the .env file.
-
-```
-FIRECRAWL_API_KEY="..."
-```
-
-**Install Dependencies**:
-   Ensure you have Python 3.11 or later installed.
-   ```bash
-   pip install firecrawl-py mcp qdrant-client
-   ```
+This project is an agentic Retrieval-Augmented Generation (RAG) system powered by FastMCP, Firecrawl, and Qdrant. It enables intelligent document and web search using LLM tools, with a local vector database for fast, semantic retrieval.
 
 ---
 
-## Run the project
+## Features:
+- **Agentic RAG:** Combines local vector search (Qdrant) and web search (Firecrawl) for robust information retrieval.
+- **FastMCP Tool Orchestration:** Exposes tools for LLMs and clients like Cursor IDE.
+- **Modular & Extensible:** Easily add new tools or data sources.
+- **Clean Repo:** No virtual environments, caches, or local database files tracked in git.
 
-First, start a Qdrant docker container as follows (make sure you have downloaded Docker):
+---
 
-   ```bash
-   docker run -p 6333:6333 -p 6334:6334 \
-   -v $(pwd)/qdrant_storage:/qdrant/storage:z \
-   qdrant/qdrant
-   ```
+## Setup:
 
-Next, go to the notebook.ipynb file, run the code to create a collection in your vector database.
+### Clone the repository:
+```sh
+git clone https://github.com/SudeekshaVandrangi/MCP_AgenticRAG_Firecrawl.git
+cd MCP_AgenticRAG_Firecrawl
+```
 
-Finally, set up your local MCP server as follows:
-- Go to Cursor settings
-- Select MCP 
-- Add new global MCP server.
+### Install Python dependencies:
+Make sure you have Python 3.11+ installed.
+```sh
+pip install -r requirements.txt
+```
 
-In the JSON file, add this:
+### Get a Firecrawl API Key:
+- Sign up at [Firecrawl](https://www.firecrawl.dev/i/api).
+- Add your API key to a `.env` file in the project root:
+```
+FIRECRAWL_API_KEY=your_api_key_here
+```
+
+### Start Qdrant (Vector Database):
+You can use Docker:
+```sh
+docker run -p 6333:6333 -p 6334:6334 \
+  -v $(pwd)/qdrant_storage:/qdrant/storage:z \
+  qdrant/qdrant
+```
+
+### Prepare the Vector Database:
+- Run `notebook.ipynb` to create and populate your Qdrant collection.
+
+---
+
+## Running the MCP Server
+
+Start the server:
+```sh
+python server.py
+```
+
+Or configure it as an MCP server in Cursor IDE with a config like:
 ```json
 {
   "mcpServers": {
-      "mcp-rag-app": {
-          "command": "python",
-          "args": ["/absolute/path/to/server.py"],
-          "host": "127.0.0.1",
-          "port": 8080,
-          "timeout": 30000
-      }
+    "mcp-rag-app": {
+      "command": "python",
+      "args": ["/absolute/path/to/server.py"],
+      "host": "127.0.0.1",
+      "port": 8080,
+      "timeout": 30000
+    }
   }
 }
 ```
 
-Done! You can now interact with your vector database and fallback to web search if needed.
+---
+
+## Usage
+
+- Interact with the server via Cursor IDE or any MCP-compatible client.
+- Use the provided tools for:
+  - **Machine Learning FAQ retrieval** (from Qdrant)
+  - **Web search** (via Firecrawl)
 
 ---
+
+## Best Practices
+
+- **Recreate environments:** Use `requirements.txt` for dependencies.
+
+---
+
+## Project Structure
+
+```
+MCP_AgenticRAG_Firecrawl/
+├── server.py           # MCP server with tool definitions
+├── rag_code.py         # Retrieval and embedding logic
+├── notebook.ipynb      # Setup and data population for Qdrant
+├── requirements.txt    # Python dependencies
+├── .gitignore          # Excludes venv, cache, and DB files
+├── README.md           # This file
+└── ...
+```
+
+---
+
+## License
+
+This project is for educational and research purposes.
+
+---
+
+**Questions or contributions?**  
+Open an issue or pull request on [GitHub](https://github.com/SudeekshaVandrangi/MCP_AgenticRAG_Firecrawl).
 
 
