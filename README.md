@@ -102,13 +102,9 @@ MCP_AgenticRAG_Firecrawl/
 
 ---
 
-## License
 
-This project is for educational and research purposes.
 
 ---
 
-**Questions or contributions?**  
-Open an issue or pull request on [GitHub](https://github.com/SudeekshaVandrangi/MCP_AgenticRAG_Firecrawl).
 
 
