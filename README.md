@@ -67,6 +67,8 @@ Or configure it as an MCP server in Cursor IDE with a config like:
   }
 }
 ```
+![Mcp_Powered_Agentic_RAG_Workflow](https://github.com/user-attachments/assets/f50387bf-688e-4841-8f94-8eab63aa1c2a)
+
 
 ---
 
