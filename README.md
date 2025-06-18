@@ -72,20 +72,6 @@ Or configure it as an MCP server in Cursor IDE with a config like:
 
 ---
 
-## Usage
-
-- Interact with the server via Cursor IDE or any MCP-compatible client.
-- Use the provided tools for:
-  - **Machine Learning FAQ retrieval** (from Qdrant)
-  - **Web search** (via Firecrawl)
-
----
-
-## Best Practices
-
-- **Recreate environments:** Use `requirements.txt` for dependencies.
-
----
 
 ## Project Structure
 
